@@ -119,6 +119,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
 */
   @override
   Widget build(BuildContext context) {
+    int? _StatusVal;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -408,16 +409,62 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        GenreSelector(
-                          genre: on_progress,
-                          checkValue: progress,
-                          onChecked: (_isOnProgress) {
-                            setState(() {
-                              progress = _isOnProgress;
-                            });
-                          },
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            on_progress,
+                            Radio(
+
+                              value: 1,
+                              groupValue: _StatusVal,
+                              onChanged: (int? value) {
+                                setState(() {
+                                  _StatusVal=value;
+                                  print(_StatusVal);
+                                  (_StatusVal==1)?progress=true:progress=false;
+                                });
+                              },
+                            ),
+                          ],
                         ),
-                        GenreSelector(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            selesai,
+                            Radio(
+
+                              value: 2,
+                              groupValue: _StatusVal,
+                              onChanged: (int? value) {
+                                setState(() {
+                                  _StatusVal=value;
+                                  print(_StatusVal);
+                                  (_StatusVal==1)?progress=true:progress=false;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        /*
+                        StatusSelector(
+                            progress_widget: on_progress,
+                            value: true,
+                            gValue: progress,
+                            onChange: (onProgress){
+                              setState(() {
+                                progress= true;
+                              });
+                            }),
+                        StatusSelector(
+                            progress_widget: selesai,
+                            value: false,
+                            gValue: progress,
+                            onChange: (onProgress){
+                              setState(() {
+                                progress= false;
+                              });
+                            })*/
+                        /*GenreSelector(
                           genre: selesai,
                           checkValue: progress,
                           onChecked: (_isSelesai) {
@@ -425,7 +472,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                                progress= !_isSelesai;
                             });
                           },
-                        ),
+                        ),*/
                       ],
                     ),
                   ),
@@ -660,7 +707,55 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
         child: Container(child: item),
       );
 }
+class StatusSelector extends StatefulWidget {
+  const StatusSelector({
+    Key? key,
+    required this.progress_widget,
+    required this.value,
+    required this.gValue,
+    required this.onChange,
+  }) : super(key: key);
 
+  final Widget progress_widget;
+  final bool value;
+  final bool gValue;
+  final Function(bool) onChange;
+
+
+  @override
+  State<StatusSelector> createState() => _StatusSelectorState();
+}
+
+class _StatusSelectorState extends State<StatusSelector> {
+  @override
+  bool isProgress= true;
+  void initState() {
+    super.initState();
+    isProgress= widget.gValue;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        widget.progress_widget,
+        Radio(
+          activeColor: blackColor,
+          value: widget.value,
+          groupValue: isProgress,
+          onChanged: (value) {
+            setState(() {
+              isProgress = widget.value;
+              widget.onChange
+                (isProgress);
+            });
+          },
+        ),
+      ],
+    );
+  }
+}
 class GenreSelector extends StatefulWidget {
   const GenreSelector({
     Key? key,

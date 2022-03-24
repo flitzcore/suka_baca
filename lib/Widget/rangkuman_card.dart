@@ -83,6 +83,7 @@ class _RangkumanCardState extends State<RangkumanCard> {
             right: 1,
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               widget.img_path==''?Container(
                 width: 61,

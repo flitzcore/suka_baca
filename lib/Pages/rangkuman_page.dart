@@ -92,7 +92,7 @@ class _RangkumanPageState extends State<RangkumanPage> {
                   Icon(
                     Icons.favorite,
                     size: 25,
-                    color: redColor,
+                    color: (rangkuman.favorit)?redColor:Colors.white,
                   ),
                 ],
               ),
