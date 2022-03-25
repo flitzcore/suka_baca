@@ -355,6 +355,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                           children: [
                             on_progress,
                             Radio(
+                              activeColor: blackColor,
                               value: 1,
                               groupValue: _StatusVal,
                               onChanged: (int? value) {
@@ -376,6 +377,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                           children: [
                             selesai,
                             Radio(
+                              activeColor: blackColor,
                               value: 2,
                               groupValue: _StatusVal,
                               onChanged: (int? value) {
