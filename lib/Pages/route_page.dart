@@ -24,6 +24,7 @@ class _RoutePageState extends State<RoutePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom != 0.0;
     return SafeArea(
       child: Scaffold(
         extendBody: true,
@@ -32,18 +33,20 @@ class _RoutePageState extends State<RoutePage> {
           children: screens,
         ),
         backgroundColor: whiteColor,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => TambahRangkumanPage(),
-            ),
-          ),
-          child: Icon(Icons.add),
-          elevation: 0,
-          backgroundColor: blackColor,
-          // shape: Border.all(width: 2, color: whiteColor),
-        ),
+        floatingActionButton: keyboardIsOpened
+            ? SizedBox()
+            : FloatingActionButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TambahRangkumanPage(),
+                  ),
+                ),
+                child: Icon(Icons.add),
+                elevation: 0,
+                backgroundColor: blackColor,
+                // shape: Border.all(width: 2, color: whiteColor),
+              ),
         floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
         bottomNavigationBar: DashboardWidget(
           index: selectedIndex,

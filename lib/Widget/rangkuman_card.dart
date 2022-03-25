@@ -49,7 +49,7 @@ class RangkumanCard extends StatefulWidget {
 }
 
 class _RangkumanCardState extends State<RangkumanCard> {
-  List<Widget> genre = [];
+  List genre = [];
 
   void fillGenre() {
     genre.clear();
@@ -107,9 +107,15 @@ class _RangkumanCardState extends State<RangkumanCard> {
                     widget.judul,
                     style: semiBlackBoldTextStyle,
                   ),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Text(
                     "by ${widget.nama_pengarang}",
                     style: lightTextStyle,
+                  ),
+                  SizedBox(
+                    height: 5,
                   ),
                   Row(
                     children: genre,
