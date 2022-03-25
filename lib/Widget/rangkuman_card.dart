@@ -1,6 +1,6 @@
-import 'dart:ffi';
 import 'dart:io';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:baca_suka/Pages/main_page.dart';
 import 'package:baca_suka/Pages/rangkuman_page.dart';
@@ -65,6 +65,7 @@ class _RangkumanCardState extends State<RangkumanCard> {
   }
 
   @override
+  
   Widget build(BuildContext context) {
     fillGenre();
     return Padding(
@@ -111,8 +112,28 @@ class _RangkumanCardState extends State<RangkumanCard> {
                     "by ${widget.nama_pengarang}",
                     style: lightTextStyle,
                   ),
+                  /*
+                  LimitedBox(
+                    maxWidth: 30,
+                    child: ListView.builder(
+
+                        scrollDirection: Axis.horizontal,
+                        itemCount: genre.length,
+                        itemBuilder: (context,index) {
+                          return genre[index];
+                        },
+
+                      ),
+                  ),*/
                   Row(
-                    children: genre,
+                    children: (genre.length<3)?genre:<Widget>[
+                      genre[1],
+                      genre[2],
+                      Text(
+                        "+${genre.length-3} more",
+                        style: lightTextStyle,
+                      )
+                    ],
                   ),
                   SizedBox(
                     height: 5,
