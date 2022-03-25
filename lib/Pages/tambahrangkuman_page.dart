@@ -100,27 +100,11 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
     selesai,
   ];
 
-  int? selectGenre;
-  // Container? valueGenre;
-  // Container? valueProgress;
-
-  // bool isFavorite = false;
-  /*
-  bool isHorror = false;
-  bool isPetualangan = false;
-  bool isPengenalanDiri = false;
-  bool isKomedi = false;
-  bool isRomansa = false;
-  bool isFiksi = false;
-  bool isThriller = false;
-  bool isMisteri = false;
-
-  bool isSelesai = false;
-  bool isOnProgress = false;
-*/
   @override
+  int _StatusVal = 0;
+  String statusText = "Status";
   Widget build(BuildContext context) {
-    int? _StatusVal;
+    print(_StatusVal);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -228,29 +212,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
               SizedBox(
                 height: 20,
               ),
-              // Container(
-              //   width: 120,
-              //   padding: EdgeInsets.symmetric(
-              //     horizontal: 24,
-              //   ),
-              //   decoration: BoxDecoration(
-              //     border: Border.all(
-              //       width: 2,
-              //       color: blackColor,
-              //     ),
-              //     borderRadius: BorderRadius.circular(12),
-              //   ),
-              //   child: DropdownButtonHideUnderline(
-              //     child: DropdownButton<Container>(
-              //       value: valueGenre,
-              //       isExpanded: true,
-              //       items: itemsGenre.map(buildItem).toList(),
-              //       onChanged: (value) => setState(
-              //         () => this.valueGenre = value,
-              //       ),
-              //     ),
-              //   ),
-              // ),
+
               ElevatedButton(
                 onPressed: () => showDialog(
                   context: context,
@@ -372,29 +334,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
               SizedBox(
                 height: 20,
               ),
-              // Container(
-              //   width: 120,
-              //   padding: EdgeInsets.symmetric(
-              //     horizontal: 24,
-              //   ),
-              //   decoration: BoxDecoration(
-              //     border: Border.all(
-              //       width: 2,
-              //       color: blackColor,
-              //     ),
-              //     borderRadius: BorderRadius.circular(12),
-              //   ),
-              //   child: DropdownButtonHideUnderline(
-              //     child: DropdownButton<Container>(
-              //       value: valueProgress,
-              //       isExpanded: false,
-              //       items: itemsProgress.map(buildItem).toList(),
-              //       onChanged: (value) => setState(
-              //         () => this.valueProgress = value,
-              //       ),
-              //     ),
-              //   ),
-              // ),
+
               ElevatedButton(
                 onPressed: () => showDialog(
                   context: context,
@@ -419,11 +359,13 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                               groupValue: _StatusVal,
                               onChanged: (int? value) {
                                 setState(() {
-                                  _StatusVal = value;
+                                  _StatusVal = value!;
                                   print(_StatusVal);
                                   (_StatusVal == 1)
                                       ? progress = true
                                       : progress = false;
+                                  statusText = "On Progress";
+                                  Navigator.pop(context);
                                 });
                               },
                             ),
@@ -438,44 +380,18 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                               groupValue: _StatusVal,
                               onChanged: (int? value) {
                                 setState(() {
-                                  _StatusVal = value;
+                                  _StatusVal = value!;
                                   print(_StatusVal);
                                   (_StatusVal == 1)
                                       ? progress = true
                                       : progress = false;
+                                  statusText = "Selesai";
+                                  Navigator.pop(context);
                                 });
                               },
                             ),
                           ],
                         ),
-                        /*
-                        StatusSelector(
-                            progress_widget: on_progress,
-                            value: true,
-                            gValue: progress,
-                            onChange: (onProgress){
-                              setState(() {
-                                progress= true;
-                              });
-                            }),
-                        StatusSelector(
-                            progress_widget: selesai,
-                            value: false,
-                            gValue: progress,
-                            onChange: (onProgress){
-                              setState(() {
-                                progress= false;
-                              });
-                            })*/
-                        /*GenreSelector(
-                          genre: selesai,
-                          checkValue: progress,
-                          onChecked: (_isSelesai) {
-                            setState(() {
-                               progress= !_isSelesai;
-                            });
-                          },
-                        ),*/
                       ],
                     ),
                   ),
@@ -483,7 +399,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                 child: Row(
                   children: [
                     Text(
-                      "Status",
+                      statusText,
                       style: lightTextStyle,
                     ),
                     Spacer(),
