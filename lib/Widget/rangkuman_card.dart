@@ -49,7 +49,7 @@ class RangkumanCard extends StatefulWidget {
 }
 
 class _RangkumanCardState extends State<RangkumanCard> {
-  List genre = [];
+  List<Widget> genre = [];
 
   void fillGenre() {
     genre.clear();

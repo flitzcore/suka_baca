@@ -638,54 +638,6 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
       );
 }
 
-class StatusSelector extends StatefulWidget {
-  const StatusSelector({
-    Key? key,
-    required this.progress_widget,
-    required this.value,
-    required this.gValue,
-    required this.onChange,
-  }) : super(key: key);
-
-  final Widget progress_widget;
-  final bool value;
-  final bool gValue;
-  final Function(bool) onChange;
-
-  @override
-  State<StatusSelector> createState() => _StatusSelectorState();
-}
-
-class _StatusSelectorState extends State<StatusSelector> {
-  @override
-  bool isProgress = true;
-  void initState() {
-    super.initState();
-    isProgress = widget.gValue;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        widget.progress_widget,
-        Radio(
-          activeColor: blackColor,
-          value: widget.value,
-          groupValue: isProgress,
-          onChanged: (value) {
-            setState(() {
-              isProgress = widget.value;
-              widget.onChange(isProgress);
-            });
-          },
-        ),
-      ],
-    );
-  }
-}
-
 class GenreSelector extends StatefulWidget {
   const GenreSelector({
     Key? key,
