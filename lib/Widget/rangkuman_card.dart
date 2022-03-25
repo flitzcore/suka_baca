@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -24,25 +25,23 @@ class RangkumanCard extends StatefulWidget {
   final bool thriller;
   final bool misteri;
 
-
   RangkumanCard(
       {Key? key,
-        required this.id,
-        required this.isFavorite,
-        required this.nama_pengarang,
-        required this.judul,
-        required this.onProgress,
-        required this.img_path,
-        //genre
-        required this.horror,
-        required this.petualangan,
-        required this.pengenalan_diri,
-        required this.komedi,
-        required this.romansa,
-        required this.fiksi,
-        required this.thriller,
-        required this.misteri
-      })
+      required this.id,
+      required this.isFavorite,
+      required this.nama_pengarang,
+      required this.judul,
+      required this.onProgress,
+      required this.img_path,
+      //genre
+      required this.horror,
+      required this.petualangan,
+      required this.pengenalan_diri,
+      required this.komedi,
+      required this.romansa,
+      required this.fiksi,
+      required this.thriller,
+      required this.misteri})
       : super(key: key);
 
   @override
@@ -50,18 +49,19 @@ class RangkumanCard extends StatefulWidget {
 }
 
 class _RangkumanCardState extends State<RangkumanCard> {
-  List<Widget> genre=[];
-  void fillGenre(){
+  List<Widget> genre = [];
+
+  void fillGenre() {
     genre.clear();
     genre.add(SizedBox());
-    if(widget.horror)genre.add(horror);
-    if(widget.petualangan)genre.add(petualangan);
-    if(widget.pengenalan_diri)genre.add(pengenalanDiri);
-    if(widget.komedi)genre.add(komedi);
-    if(widget.romansa)genre.add(romansa);
-    if(widget.fiksi)genre.add(fiksi);
-    if(widget.thriller)genre.add(thriller);
-    if(widget.misteri)genre.add(misteri);
+    if (widget.horror) genre.add(horror);
+    if (widget.petualangan) genre.add(petualangan);
+    if (widget.pengenalan_diri) genre.add(pengenalanDiri);
+    if (widget.komedi) genre.add(komedi);
+    if (widget.romansa) genre.add(romansa);
+    if (widget.fiksi) genre.add(fiksi);
+    if (widget.thriller) genre.add(thriller);
+    if (widget.misteri) genre.add(misteri);
   }
 
   @override
@@ -85,16 +85,18 @@ class _RangkumanCardState extends State<RangkumanCard> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              widget.img_path==''?Container(
-                width: 61,
-                height: 93,
-                color: blackColor,
-              ):Image.file(
-                File(widget.img_path),
-                width: 61,
-                height: 93,
-                fit: BoxFit.cover,
-              ),
+              widget.img_path == ''
+                  ? Container(
+                      width: 61,
+                      height: 93,
+                      color: blackColor,
+                    )
+                  : Image.file(
+                      File(widget.img_path),
+                      width: 61,
+                      height: 93,
+                      fit: BoxFit.cover,
+                    ),
               SizedBox(
                 width: 10,
               ),
@@ -110,12 +112,12 @@ class _RangkumanCardState extends State<RangkumanCard> {
                     style: lightTextStyle,
                   ),
                   Row(
-                    children: genre
+                    children: genre,
                   ),
                   SizedBox(
                     height: 5,
                   ),
-                  widget.onProgress?on_progress:selesai,
+                  widget.onProgress ? on_progress : selesai,
                 ],
               ),
               Spacer(),
@@ -136,10 +138,11 @@ class _RangkumanCardState extends State<RangkumanCard> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RangkumanPage(rid: widget.id,),
+                            builder: (context) => RangkumanPage(
+                              rid: widget.id,
+                            ),
                           ),
                         );
-
                       },
                       icon: Icon(
                         Icons.arrow_forward,
