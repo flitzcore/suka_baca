@@ -118,7 +118,14 @@ class _RangkumanCardState extends State<RangkumanCard> {
                     height: 5,
                   ),
                   Row(
-                    children: genre,
+                    children: (genre.length<3)?genre:<Widget>[
+                      genre[1],
+                      genre[2],
+                      Text(
+                        "+${genre.length-3} more",
+                        style: lightTextStyle,
+                      )
+                    ],
                   ),
                   SizedBox(
                     height: 5,
